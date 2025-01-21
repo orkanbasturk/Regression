@@ -54,7 +54,7 @@ To set up the application locally, follow these steps:
 
 ### 1. Clone the Repository
 
-git clone https://github.com/your-username/your-repository.git
+git clone https://github.com/orkanbasturk/Regression.git
 cd your-repository
 
 ### 2. Set Up a Virtual Environment
