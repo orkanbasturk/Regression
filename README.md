@@ -42,8 +42,6 @@ This project leverages the following tools and technologies:
 ---
 
 
----
-
 ## 📥 **Installation**
 
 To set up the application locally, follow these steps:
@@ -69,7 +67,7 @@ pip install -r requirements.txt
 ### 4. Run the Application
 python main.py
 
-📝 How to Use
+## 📝 How to Use
 
 Step 1: Select a Dataset
 When prompted, use the graphical file picker to select a CSV file.
