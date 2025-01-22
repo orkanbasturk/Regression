@@ -89,11 +89,15 @@ Enter custom values for the features when prompted to get predictions for the ta
 📊 Outputs and Visualizations
 Correlation Matrix:
 
+![sample-correlation_matrix](https://github.com/user-attachments/assets/a2e00737-b0be-4164-aa5b-f20c22a3a366)
+
 Provides a heatmap showing the relationships between features and the target variable.
 Learning Loss Graph:
+![sample-loss_graph 19 20 25](https://github.com/user-attachments/assets/2f04a7c7-6f0c-4be2-9eb1-c792effc3f8c)
 
 Displays the loss over epochs during model training.
 SHAP Analysis:
+![sample-shap_summary 13 21 54](https://github.com/user-attachments/assets/3ef61f4c-ad60-4773-b9a4-ba71cb9e001c)
 
 Explains how each feature contributes to the model's predictions.
 
