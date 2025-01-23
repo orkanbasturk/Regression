@@ -14,13 +14,13 @@ from tkinter import Tk
 from tkinter.filedialog import askopenfilename
 
 
-print("Lütfen veri dosyasını seçin.")
+print("Please choose a dataset.")
 time.sleep(3)
 root = Tk()
 root.withdraw()  
-file_path = askopenfilename(title="Veri dosyasını seçin", filetypes=[("CSV Files", "*.csv")])
+file_path = askopenfilename(title="Choose dataset", filetypes=[("CSV Files", "*.csv")])
 if not file_path:
-    print("Dosya seçilmedi, çıkılıyor.")
+    print("No selection, shutting down.")
     exit()
 
 try:
@@ -29,15 +29,15 @@ try:
         sep = ',' if ',' in first_line else ';'
     data = pd.read_csv(file_path, sep=sep)
 except FileNotFoundError:
-    print(f"Dosya bulunamadı: {file_path}")
+    print(f"File not found: {file_path}")
     exit()
 except Exception as e:
-    print(f"Bir hata oluştu: {e}")
+    print(f"Error: {e}")
     exit()
 
-print("Veri setindeki sütunlar:")
+print("Dimensions:")
 print(data.columns)
-target_column = input("Hedef sütunun adı nedir? ")
+target_column = input("What is your target dimension: ")
 
 data = data.dropna()  
 scaler_x = StandardScaler()
@@ -84,7 +84,7 @@ for epoch in range(epoch_size):
         patience_counter += 1
 
     if patience_counter >= patience:
-        print(f"Erken durdurma! En iyi loss: {best_loss} (Epoch: {epoch + 1})")
+        print(f"Early stop! Best loss: {best_loss} (Epoch: {epoch + 1})")
         break
 
     if epoch % 100 == 0:
@@ -103,9 +103,9 @@ test_y = scaler_y.inverse_transform(test_y)
 mse = mean_squared_error(test_y, test_preds)
 r2 = r2_score(test_y, test_preds)
 
-print("\nTest Sonuçları:")
+print("\nTest Results:")
 print(f"Mean Squared Error (MSE): {mse}")
-print(f"R² Skoru: {r2}")
+print(f"R² Score: {r2}")
 
 correlation = data.corr()
 plt.figure(figsize=(10, 8))
@@ -133,19 +133,19 @@ plt.savefig("output/shap_summary.jpg")
 plt.close()
 
 while True:
-    answer = input("Tahmin yapmak ister misiniz? (Evet/Hayır): ").strip().lower()
-    if answer == "evet":
+    answer = input("Do you want predict? (Yes/No): ").strip().lower()
+    if answer == "yes":
         inputs = []
         for i, feature in enumerate(data.drop(columns=[target_column]).columns):
-            value = float(input(f"{feature} için bir değer girin: "))
+            value = float(input(f"{feature} Value?: "))
             inputs.append(value)
 
         input_tensor = torch.tensor(scaler_x.transform([inputs]), dtype=torch.float32)
         prediction = scaler_y.inverse_transform(model(input_tensor).detach().numpy())
-        print(f"Tahmin edilen değer: {prediction[0][0]}")
-    elif answer == "hayır":
-        print("Uygulama kapatılıyor...")
-        print("iletişim: basturkorkan@gmail.com")
+        print(f"Predicted value: {prediction[0][0]}")
+    elif answer == "No":
+        print("Shutting down...")
+        print("contact: basturkorkan@gmail.com")
         break
     else:
-        print("Geçersiz cevap, lütfen 'Evet' veya 'Hayır' yazınız.")
+        print("Unknown command, please just write 'yes' or 'no' .")
