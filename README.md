@@ -115,8 +115,9 @@ Contributions are welcome! If you have suggestions for improving the application
 📄 License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
-👨‍💻 Author
-orkanbasturk – https://github.com/orkanbasturk
+👨‍💻 Author: Orkan Baştürk 
+https://github.com/orkanbasturk
+basturkorkan@gmail.com
 
 
 
